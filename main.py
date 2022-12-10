@@ -1,3 +1,4 @@
+# CODE: 5
 import csv
 import random
 import interfaz 
@@ -7,6 +8,7 @@ def leer_palabra_secreta(csvfilename):
         data = list(csv.DictReader(file))
     palabra_secreta = random.choice(data)
     return palabra_secreta['palabras']
+    
    
 def pedir_letra(letras_usadas):
     
@@ -15,7 +17,7 @@ def pedir_letra(letras_usadas):
         if letra in letras_usadas:
             print (f'Esa letra ya fue ingresada, elegir otra!\n ')
             continue
-        elif len(letra) > 1:
+        elif len(letra) > 1 and letra.isalpha():
             print(f'Ingresar solo una letra!\n ')
             continue
         elif not letra.isalpha():
@@ -34,14 +36,17 @@ def verificar_letra(letra, palabra_secreta):
         return False
 
 
+   
 def validar_palabra(letras_usadas, palabra_secreta):
+    es_ganador = False
+
     for i in range(len(palabra_secreta)):
-        if palabra_secreta[i - 1] in letras_usadas:
-            return True
-        else:
-            return False
-
-
+        if palabra_secreta[i] in letras_usadas: 
+           es_ganador = True
+        return es_ganador
+       
+       
+        
 
 if __name__ == "__main__":
     print("\n¡Aquí comienza el juego del ahorcado!\n")
