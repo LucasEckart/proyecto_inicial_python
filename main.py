@@ -38,14 +38,13 @@ def verificar_letra(letra, palabra_secreta):
 
    
 def validar_palabra(letras_usadas, palabra_secreta):
-    es_ganador = False
+    es_ganador = True
 
     for i in range(len(palabra_secreta)):
-        if palabra_secreta[i] in letras_usadas: 
-           es_ganador = True
+        if not letras_usadas in palabra_secreta:
+            es_ganador = False
+
         return es_ganador
-       
-       
         
 
 if __name__ == "__main__":
